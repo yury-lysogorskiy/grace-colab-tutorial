@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+__pycache__/
+*.log
+5-lammps-*/log.lammps
+1-finetune-hull+fps/input.yaml
+3-distill/student-*/input.yaml
+5-lammps-*/in.lammps

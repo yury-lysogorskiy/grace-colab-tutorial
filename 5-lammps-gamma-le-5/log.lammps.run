@@ -1,0 +1,157 @@
+units metal
+boundary p p p
+atom_style atomic
+read_data AlLi.lammps-data
+Reading data file ...
+  triclinic box = (0 0 0) to (26.954922 23.343648 22.008602) with tilt (13.477461 13.477461 7.7812158)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (src/domain.cpp:221)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  864 atoms
+  read_data CPU = 0.011 seconds
+pair_style grace/fs extrapolation
+[GRACE/FS]
+[GRACE-FS] Version: 2025.12.4p1
+[GRACE-FS] Product evaluator is used
+pair_coeff * * /home/users/lysogy36/PycharmProjects/GITHUB/grace-tutorial-colab-Sept2026/fps-variant/3-distill/student-gamma-le-5/seed/1/saved_model.yaml /home/users/lysogy36/PycharmProjects/GITHUB/grace-tutorial-colab-Sept2026/fps-variant/3-distill/student-gamma-le-5/seed/1/saved_model.asi Al Li
+[GRACE-FS] Loading /home/users/lysogy36/PycharmProjects/GITHUB/grace-tutorial-colab-Sept2026/fps-variant/3-distill/student-gamma-le-5/seed/1/saved_model.yaml
+[GRACE-FS] Supporting 2 elements: Al Li 
+[GRACE-FS] Number of functions per element: 205 
+[GRACE-FS] Mapping LAMMPS atom type #1(Al) -> ACE species type #0
+[GRACE-FS] Mapping LAMMPS atom type #2(Li) -> ACE species type #1
+[GRACE-FS] Loading ASI /home/users/lysogy36/PycharmProjects/GITHUB/grace-tutorial-colab-Sept2026/fps-variant/3-distill/student-gamma-le-5/seed/1/saved_model.asi
+neighbor 2.0 bin
+neigh_modify delay 0 every 1 check yes
+fix     grace_gamma all pair 10 grace/fs gamma 1
+compute max_gamma all reduce max f_grace_gamma
+compute dist all pair/local dist
+compute min_dist all reduce min c_dist inputs local
+variable maxg equal c_max_gamma
+variable dump_skip equal "c_max_gamma < 1.5"
+dump extrap all custom 10 extrapolative_structures.dump id type x y z f_grace_gamma
+dump_modify extrap skip v_dump_skip element Al Li
+fix stopper all halt 10 v_maxg > 25 error continue
+thermo_style custom step temp pe etotal press vol c_min_dist c_max_gamma
+thermo 25
+thermo_modify flush yes
+velocity all create 500.0 12345 mom yes rot yes dist gaussian
+timestep 0.001
+fix npt_ramp all npt temp 500 5000 0.1 aniso 0 0 1.0
+run 1500
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Your simulation uses code contributions which should be cited:
+
+- KOKKOS package: https://doi.org/10.1145/3731599.3767498
+
+@inproceedings{Johansson25,
+ author = {A. Johansson and E. Weinberg and C. Trott and M. McCarthy and S. Moore},
+ title = {{LAMMPS-KOKKOS}: {P}erformance Portable Molecular Dynamics Across Exascale Architectures},
+ year = 2025,
+ booktitle = {Proceedings of the SC '25 Workshops of the International Conference for High Performance Computing,
+  Networking, Storage and Analysis},
+ pages = {1217–1232},
+}
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 8
+  ghost atom cutoff = 8
+  binsize = 8, bins = 7 4 3
+  2 neighbor lists, perpetual/occasional/extra = 1 1 0
+  (1) pair grace/fs/kk, perpetual
+      attributes: full, newton on, kokkos_device
+      pair build: full/bin/kk/device
+      stencil: full/bin/3d
+      bin: kk/device
+  (2) compute pair/local, occasional
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton/tri
+      stencil: half/bin/3d/tri
+      bin: standard
+WARNING: Fix pair not compatible with sending data in Kokkos communication (src/KOKKOS/comm_kokkos.cpp:934)
+WARNING: Fix with atom-based arrays not compatible with sending data in Kokkos communication, switching to legacy exchange/border communication (src/KOKKOS/comm_kokkos.cpp:941)
+WARNING: Fix pair not (yet) compatible with Kokkos sorting on device (src/KOKKOS/atom_kokkos.cpp:219)
+WARNING: Fix with atom-based arrays not (yet) compatible with Kokkos sorting on device, switching to legacy host sorting (src/KOKKOS/atom_kokkos.cpp:225)
+Per MPI rank memory allocation (min/avg/max) = 229 | 229 | 229 Mbytes
+   Step          Temp          PotEng         TotEng         Press          Volume       c_min_dist    c_max_gamma  
+         0   500           -2604.7615     -2548.9857      1057.8192      13848.389      2.7510752      0.65212179   
+        25   121.96173     -2562.2709     -2548.6659      9270.4927      13858.624      2.3122647      1.2416993    
+        50   268.51369     -2577.5731     -2547.62        5035.9791      13914.561      2.436701       0.91549512   
+        75   235.24555     -2572.4848     -2546.2428      2316.6155      14003.958      2.3666888      0.9520378    
+       100   259.93017     -2573.1124     -2544.1168     -373.76794      14106.773      2.3621524      0.86645044   
+       125   284.06107     -2573.3461     -2541.6586     -2863.9776      14205.814      2.3067131      1.0433665    
+       150   280.75836     -2569.9099     -2538.5909     -4635.12        14284.86       2.3535039      0.97070726   
+       175   335.57772     -2572.7968     -2535.3626     -6293.0164      14331.622      2.4090343      0.92527107   
+       200   282.80375     -2563.4453     -2531.8981     -4651.2545      14339.265      2.3078709      0.92861489   
+       225   327.16962     -2565.1588     -2528.6625     -3518.7721      14316.337      2.3812921      1.1068406    
+       250   325.90702     -2561.2552     -2524.8998     -1524.1973      14273.077      2.2502208      1.0068979    
+       275   406.57035     -2565.8746     -2520.521      -396.64091      14220.326      2.3541281      0.9592087    
+       300   349.73622     -2555.012      -2515.9984      3388.8775      14169.397      2.1609764      1.663453     
+       325   420.36823     -2557.8993     -2511.0066      4047.5481      14138.502      2.3139404      1.236919     
+       350   447.21958     -2555.6179     -2505.7299      4995.9295      14134.434      2.237612       1.7233991    
+       375   487.80082     -2553.9189     -2499.504       5312.5169      14160.601      2.2357715      1.2057334    
+       400   450.16382     -2544.2286     -2494.0121      5623.7213      14220.352      2.3001161      1.4206843    
+       425   529.61823     -2546.6086     -2487.5289      2412.991       14312.854      2.1648309      1.1996558    
+       450   533.8494      -2540.1549     -2480.6032      1184.9449      14420.726      2.3490963      1.240206     
+       475   546.12849     -2534.3482     -2473.4267     -452.30356      14533.791      2.2589906      1.1486829    
+       500   608.27932     -2533.1463     -2465.2918     -2179.4187      14639.595      2.2682923      1.6173935    
+       525   580.54307     -2521.935      -2457.1745     -2342.9778      14728.059      2.1974005      2.005863     
+       550   694.63489     -2525.5697     -2448.0822     -3859.0994      14795.493      2.287657       1.6259977    
+       575   688.19602     -2515.0389     -2438.2696     -1870.8456      14836.268      2.1778377      1.9996626    
+       600   753.00264     -2512.2684     -2428.2698     -1140.4818      14861.433      2.2375659      2.2530047    
+       625   785.34118     -2505.0418     -2417.4358      26.790951      14878.946      2.0052081      3.1725204    
+       650   849.50571     -2500.5371     -2405.7735      1067.0867      14895.504      2.1257478      2.8439527    
+       675   834.51828     -2487.0935     -2394.0017      3316.2043      14920.273      2.1394123      2.6694516    
+       700   983.65447     -2490.7125     -2380.9844      2497.3063      14964.51       2.1422729      3.4398149    
+       725   988.31084     -2477.4109     -2367.1633      4293.1338      15028.68       2.1011006      5.1985041    
+       750   1106.729      -2475.8132     -2352.3559      3858.8782      15120.951      2.0935275      3.1878844    
+       775   1087.7816     -2458.6567     -2337.313       5027.4043      15242.823      1.98355        3.7385384    
+       800   1144.6311     -2449.1296     -2321.4442      3676.4783      15397.595      1.9975844      4.9752852    
+       825   1164.6615     -2435.5131     -2305.5933      3238.3042      15576.294      2.0493544      9.347339     
+       850   1195.6164     -2422.1721     -2288.7992      3196.5692      15769.928      2.0402598      5.7687721    
+       875   1312.1526     -2417.3235     -2270.951       1333.9692      15967.255      2.1284936      5.4308584    
+       900   1393.7985     -2407.2076     -2251.7272      752.09926      16151          1.9782588      8.4559115    
+       925   1452.6668     -2393.5645     -2231.5174      1254.0004      16312.754      1.991179       8.2458242    
+       950   1487.0631     -2376.5031     -2210.619       3006.7437      16457.118      1.9873576      5.6132324    
+       975   1530.1444     -2360.0672     -2189.3773      3658.7414      16597.941      1.9906307      9.0305092    
+      1000   1637.6071     -2349.8954     -2167.2178      4384.3574      16742.927      2.0109058      7.7522138    
+      1025   1727.1886     -2336.3494     -2143.6789      6433.5148      16900.31       1.8440656      10.410432    
+      1050   1734.5755     -2313.4182     -2119.9237      9324.1292      17087.811      1.9292181      17.293229    
+      1075   1904.6652     -2308.4623     -2095.994       8336.4516      17324.265      1.9394978      18.752531    
+      1100   1898.4193     -2282.2384     -2070.4668      9582.1343      17601.346      1.9219712      13.450698    
+Fix halt condition for fix-id stopper met on step 1110 with value 30.549903886818896
+Loop time of 19.0556 on 1 procs for 1110 steps with 864 atoms
+
+Performance: 5.033 ns/day, 4.769 hours/ns, 58.250 timesteps/s, 50.328 katom-step/s
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 17.606     | 17.606     | 17.606     |   0.0 | 92.39
+Neigh   | 0.035292   | 0.035292   | 0.035292   |   0.0 |  0.19
+Comm    | 0.042081   | 0.042081   | 0.042081   |   0.0 |  0.22
+Output  | 0.3022     | 0.3022     | 0.3022     |   0.0 |  1.59
+Modify  | 1.024      | 1.024      | 1.024      |   0.0 |  5.37
+Other   |            | 0.04628    |            |       |  0.24
+
+Nlocal:            864 ave         864 max         864 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           3149 ave        3149 max        3149 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          45344 ave       45344 max       45344 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:        89782 ave       89782 max       89782 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 89782
+Ave neighs/atom = 103.91435
+Neighbor list builds = 39
+Dangerous builds = 0
+[grace/fs] Not enough statistics
+Total wall time: 0:00:19

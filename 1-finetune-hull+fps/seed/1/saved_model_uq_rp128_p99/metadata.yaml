@@ -1,0 +1,5 @@
+chemical_symbols:
+- Al
+- Li
+cutoff: 6.0
+has_uq: true

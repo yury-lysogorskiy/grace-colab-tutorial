@@ -1,0 +1,20 @@
+GRACE-UQ  Elbow Cluster Selection Report
+=======================================================
+Candidate k values: [1, 2, 4, 8]
+Method: max perpendicular distance to chord (scale-invariant)
+
+Per-sample inertia (lower is better):
+       Element           k=1           k=2           k=4           k=8   optimal_k
+----------------------------------------------------------------------------------
+         Al(0)  3.866518e-01  1.414362e-01  1.064187e-01  8.515004e-02           2
+         Li(1)  2.273549e-01  1.475701e-01  1.124740e-01  8.490122e-02           4
+----------------------------------------------------------------------------------
+        GLOBAL                                                                   4
+
+Selected k = 4  (max over per-element optima: Al(0)=2, Li(1)=4)
+
+Normalised inertia (fraction of k=1 inertia, lower is better):
+       Element           k=1           k=2           k=4           k=8
+----------------------------------------------------------------------
+         Al(0)      1.000000      0.365797      0.275231      0.220224
+         Li(1)      1.000000      0.649074      0.494707      0.373430
