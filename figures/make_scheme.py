@@ -64,7 +64,7 @@ box(980, MID, 160, BH, "GRACE-FS-OMAT", ["foundation model", "fast linear model"
 box(1240, TOP, 160, BH, "GRACE-FS finetuned", ["the student", "distillation pool;", "all weights train"], "model", "§10")
 box(1240, MID, 160, BH, "Active set (ASI)", ["D-optimality → γ", "at every MD step"], "uq", "§10")
 # column 7: LAMMPS
-box(1500, TOP, 160, BH, "LAMMPS MD", ["CPU or GPU (Kokkos),", "extrapolation grade", "on the fly"], "sim", "§12")
+box(1500, TOP, 160, BH, "LAMMPS MD", ["CPU or GPU (Kokkos),", "extrapolation grade", "on the fly"], "sim", "§13")
 
 # ---------------------------------------------------------------- arrows
 y1 = TOP + BH/2   # top row centre line
@@ -97,7 +97,7 @@ arrow([(1430, y1), (1500, y1)]); label(1465, y1-10, "E, F, γ", size=12)
 label(1438, ym-8, "γ", anchor="start", size=13)
 # closing the loop: LAMMPS -> structures for the next DFT round -> pools
 arrow([(1580, TOP+BH), (1580, 548), (140, 548), (140, BOT+BH)], dashed=True)
-label(860, 541, "structures the student is unsure about → DFT → next finetuning round (§12)", size=12.5)
+label(860, 541, "structures the student is unsure about → DFT → next finetuning round (§13)", size=12.5)
 # the shortcut: the same structures labelled by the teacher go straight back into the distillation pool
 arrow([(1580, TOP), (1580, 26), (1060, 26), (1060, TOP)], dashed=True)
 label(1320, 17, "shortcut: the same structures labelled by the teacher instead of DFT → distillation pool", size=12.5)
