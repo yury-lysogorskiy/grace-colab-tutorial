@@ -4,7 +4,7 @@ finetuned teacher + UQ artifact -> distillation pool -> GRACE/FS student + activ
 from pathlib import Path
 import sys
 
-W, H = 1620, 600
+W, H = 1690, 600
 FONT = "Liberation Sans, Helvetica, Arial, sans-serif"
 C = {  # fill, stroke
     "model": ("#dbe7f6", "#2f5f9e"),
@@ -59,11 +59,12 @@ box(700, TOP, 180, BH, "GRACE-3L finetuned", ["the teacher", "hull + FPS data; o
 box(700, MID, 180, BH, "UQ artifact", ["Gaussian mixture on the", "teacher's features → γ"], "uq", "§5")
 # column 5: distillation pool
 box(980, TOP, 160, BH, "Distillation pool", ["deformed hull structures", "labelled by the teacher,", "kept if γ ≤ 5"], "data", "§9")
+box(980, MID, 160, BH, "GRACE-FS-OMAT", ["foundation model", "fast linear model"], "model", "§10")
 # column 6: student and its active set
-box(1190, TOP, 140, BH, "GRACE/FS", ["the student", "fast linear model"], "model", "§10")
-box(1190, MID, 140, BH, "Active set (ASI)", ["D-optimality → γ", "at every MD step"], "uq", "§10")
+box(1240, TOP, 160, BH, "GRACE-FS finetuned", ["the student", "distillation pool;", "all weights train"], "model", "§10")
+box(1240, MID, 160, BH, "Active set (ASI)", ["D-optimality → γ", "at every MD step"], "uq", "§10")
 # column 7: LAMMPS
-box(1430, TOP, 160, BH, "LAMMPS MD", ["CPU or GPU (Kokkos),", "extrapolation grade", "on the fly"], "sim", "§12")
+box(1500, TOP, 160, BH, "LAMMPS MD", ["CPU or GPU (Kokkos),", "extrapolation grade", "on the fly"], "sim", "§12")
 
 # ---------------------------------------------------------------- arrows
 y1 = TOP + BH/2   # top row centre line
@@ -84,16 +85,19 @@ arrow([(880, ym), (910, ym), (910, y1)], head=False); dot(910, y1)
 label(918, ym-8, "γ", anchor="start", size=13)
 # teacher (+UQ) -> distillation pool -> student
 arrow([(880, y1), (980, y1)]); label(945, y1-10, "E, F, γ", size=12)
-arrow([(1140, y1), (1190, y1)]); label(1165, y1-10, "fit", size=12)
+arrow([(1140, y1), (1190, y1)], head=False); dot(1190, y1)
+arrow([(1190, y1), (1240, y1)])
+arrow([(1140, ym), (1190, ym), (1190, y1)], head=False)
+label(1190, y1-10, "finetuning", size=13)
 # student -> active set; both -> LAMMPS
-arrow([(1260, TOP+BH), (1260, MID)]); label(1268, (TOP+BH+MID)/2+4, "pace_activeset", anchor="start", size=11.5, italic=False)
-arrow([(1330, ym), (1360, ym), (1360, y1)], head=False); dot(1360, y1)
-arrow([(1330, y1), (1360, y1)], head=False)
-arrow([(1360, y1), (1430, y1)]); label(1395, y1-10, "E, F, γ", size=12)
-label(1368, ym-8, "γ", anchor="start", size=13)
+arrow([(1320, TOP+BH), (1320, MID)]); label(1328, (TOP+BH+MID)/2+4, "pace_activeset", anchor="start", size=11.5, italic=False)
+arrow([(1400, ym), (1430, ym), (1430, y1)], head=False); dot(1430, y1)
+arrow([(1400, y1), (1430, y1)], head=False)
+arrow([(1430, y1), (1500, y1)]); label(1465, y1-10, "E, F, γ", size=12)
+label(1438, ym-8, "γ", anchor="start", size=13)
 # closing the loop: LAMMPS -> structures for the next DFT round -> pools
-arrow([(1510, TOP+BH), (1510, 548), (140, 548), (140, BOT+BH)], dashed=True)
-label(825, 541, "structures the student is unsure about → next DFT round (§12)", size=12.5)
+arrow([(1580, TOP+BH), (1580, 548), (140, 548), (140, BOT+BH)], dashed=True)
+label(860, 541, "structures the student is unsure about → next DFT round (§12)", size=12.5)
 
 # ---------------------------------------------------------------- legend
 lx, ly = 705, 440
