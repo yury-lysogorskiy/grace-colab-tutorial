@@ -16,7 +16,7 @@ results a first pass takes about 15 minutes. Set `FORCE_RERUN = True` in the con
 recompute every stage, about an hour on a T4.
 
 Locally: clone, start the notebook from an environment with `tensorpotential>=0.6.1`, `amstools` and
-`python-ace` (the wheel from TestPyPI, or the `feature/build-speedup` branch built from source); `ROOT` is the repository directory.
+`python-ace` 0.4.0rc1; `ROOT` is the repository directory.
 
 ## What is in the repository
 
