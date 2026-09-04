@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1620" height="600" viewBox="0 0 1620 600">
+<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4.5 L0,9 z" fill="#4a4a4a"/></marker></defs>
+<rect width="1620" height="600" fill="#ffffff"/>
+<rect x="30" y="60" width="220" height="96" rx="10" ry="10" fill="#dbe7f6" stroke="#2f5f9e" stroke-width="1.8"/>
+<text x="140.0" y="95.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">GRACE-3L-OMAT-large</text>
+<text x="140.0" y="116.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">foundation model</text>
+<text x="140.0" y="133.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">trained on 100+ M DFT structures</text>
+<rect x="221.0" y="51" width="23.0" height="18" rx="9" fill="#2f5f9e"/>
+<text x="232.5" y="64" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§2</text>
+<rect x="18" y="212" width="244" height="298" rx="12" fill="none" stroke="#c8891a" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="140" y="230" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8a5c0e">Al–Li DFT database (Menon et al. 2024)</text>
+<rect x="30" y="250" width="220" height="96" rx="10" ry="10" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.8"/>
+<text x="140.0" y="285.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">Convex-hull pool</text>
+<text x="140.0" y="306.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">structures on and near</text>
+<text x="140.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">the DFT convex hull</text>
+<rect x="221.0" y="241" width="23.0" height="18" rx="9" fill="#c8891a"/>
+<text x="232.5" y="254" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§1</text>
+<rect x="30" y="400" width="220" height="96" rx="10" ry="10" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.8"/>
+<text x="140.0" y="435.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">Deformation pool</text>
+<text x="140.0" y="456.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">1000 random strained and</text>
+<text x="140.0" y="473.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">rattled structures</text>
+<rect x="221.0" y="391" width="23.0" height="18" rx="9" fill="#c8891a"/>
+<text x="232.5" y="404" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§1</text>
+<rect x="300" y="250" width="180" height="96" rx="10" ry="10" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.8"/>
+<text x="390.0" y="293.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">128 structures</text>
+<text x="390.0" y="314.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">112 train + 16 test</text>
+<rect x="300" y="400" width="180" height="96" rx="10" ry="10" fill="#e9e0f5" stroke="#6d4aa8" stroke-width="1.8"/>
+<text x="390.0" y="426.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">FPS → 128 structures</text>
+<text x="390.0" y="447.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">farthest-point sampling in</text>
+<text x="390.0" y="464.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">the foundation model's</text>
+<text x="390.0" y="481.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">feature space</text>
+<rect x="451.0" y="391" width="23.0" height="18" rx="9" fill="#6d4aa8"/>
+<text x="462.5" y="404" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§3</text>
+<rect x="530" y="250" width="120" height="246" rx="10" ry="10" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.8"/>
+<text x="590.0" y="334.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">Training set</text>
+<text x="590.0" y="355.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">256 DFT</text>
+<text x="590.0" y="372.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">structures</text>
+<text x="590.0" y="389.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933"></text>
+<text x="590.0" y="406.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">energies, forces,</text>
+<text x="590.0" y="423.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">stresses</text>
+<rect x="700" y="60" width="180" height="96" rx="10" ry="10" fill="#dbe7f6" stroke="#2f5f9e" stroke-width="1.8"/>
+<text x="790.0" y="86.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">GRACE-3L finetuned</text>
+<text x="790.0" y="107.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">the teacher</text>
+<text x="790.0" y="124.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">hull + FPS data; only the</text>
+<text x="790.0" y="141.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">readout weights train</text>
+<rect x="851.0" y="51" width="23.0" height="18" rx="9" fill="#2f5f9e"/>
+<text x="862.5" y="64" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§4</text>
+<rect x="700" y="250" width="180" height="96" rx="10" ry="10" fill="#e9e0f5" stroke="#6d4aa8" stroke-width="1.8"/>
+<text x="790.0" y="285.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">UQ artifact</text>
+<text x="790.0" y="306.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">Gaussian mixture on the</text>
+<text x="790.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">teacher's features → γ</text>
+<rect x="851.0" y="241" width="23.0" height="18" rx="9" fill="#6d4aa8"/>
+<text x="862.5" y="254" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§5</text>
+<rect x="980" y="60" width="160" height="96" rx="10" ry="10" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.8"/>
+<text x="1060.0" y="86.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">Distillation pool</text>
+<text x="1060.0" y="107.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">deformed hull structures</text>
+<text x="1060.0" y="124.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">labelled by the teacher,</text>
+<text x="1060.0" y="141.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">kept if γ ≤ 5</text>
+<rect x="1111.0" y="51" width="23.0" height="18" rx="9" fill="#c8891a"/>
+<text x="1122.5" y="64" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§9</text>
+<rect x="1190" y="60" width="140" height="96" rx="10" ry="10" fill="#dbe7f6" stroke="#2f5f9e" stroke-width="1.8"/>
+<text x="1260.0" y="95.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">GRACE/FS</text>
+<text x="1260.0" y="116.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">the student</text>
+<text x="1260.0" y="133.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">fast linear model</text>
+<rect x="1293.5" y="51" width="30.5" height="18" rx="9" fill="#2f5f9e"/>
+<text x="1308.75" y="64" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§10</text>
+<rect x="1190" y="250" width="140" height="96" rx="10" ry="10" fill="#e9e0f5" stroke="#6d4aa8" stroke-width="1.8"/>
+<text x="1260.0" y="285.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">Active set (ASI)</text>
+<text x="1260.0" y="306.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">D-optimality → γ</text>
+<text x="1260.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">at every MD step</text>
+<rect x="1293.5" y="241" width="30.5" height="18" rx="9" fill="#6d4aa8"/>
+<text x="1308.75" y="254" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§10</text>
+<rect x="1430" y="60" width="160" height="96" rx="10" ry="10" fill="#dff1e3" stroke="#2e8b57" stroke-width="1.8"/>
+<text x="1510.0" y="86.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">LAMMPS MD</text>
+<text x="1510.0" y="107.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">CPU or GPU (Kokkos),</text>
+<text x="1510.0" y="124.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">extrapolation grade</text>
+<text x="1510.0" y="141.5" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">on the fly</text>
+<rect x="1553.5" y="51" width="30.5" height="18" rx="9" fill="#2e8b57"/>
+<text x="1568.75" y="64" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§12</text>
+<path d="M250,108.0 L590,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8"/>
+<circle cx="590" cy="108.0" r="3.2" fill="#4a4a4a"/>
+<path d="M590,108.0 L700,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M590,250 L590,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8"/>
+<text x="470" y="98.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="13" font-style="italic" fill="#3a3a3a">finetuning</text>
+<path d="M250,298.0 L300,298.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M250,448.0 L300,448.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M480,298.0 L530,298.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M480,448.0 L530,448.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M650,298.0 L700,298.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M790,156 L790,250" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="798" y="207.0" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" font-style="italic" fill="#3a3a3a">features</text>
+<path d="M880,298.0 L910,298.0 L910,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8"/>
+<circle cx="910" cy="108.0" r="3.2" fill="#4a4a4a"/>
+<text x="918" y="290.0" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="13" font-style="italic" fill="#3a3a3a">γ</text>
+<path d="M880,108.0 L980,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="945" y="98.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" font-style="italic" fill="#3a3a3a">E, F, γ</text>
+<path d="M1140,108.0 L1190,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="1165" y="98.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" font-style="italic" fill="#3a3a3a">fit</text>
+<path d="M1260,156 L1260,250" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="1268" y="207.0" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11.5" fill="#3a3a3a">pace_activeset</text>
+<path d="M1330,298.0 L1360,298.0 L1360,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8"/>
+<circle cx="1360" cy="108.0" r="3.2" fill="#4a4a4a"/>
+<path d="M1330,108.0 L1360,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8"/>
+<path d="M1360,108.0 L1430,108.0" fill="none" stroke="#4a4a4a" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="1395" y="98.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" font-style="italic" fill="#3a3a3a">E, F, γ</text>
+<text x="1368" y="290.0" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="13" font-style="italic" fill="#3a3a3a">γ</text>
+<path d="M1510,156 L1510,548 L140,548 L140,496" fill="none" stroke="#4a4a4a" stroke-width="1.8" stroke-dasharray="6,5" marker-end="url(#arr)"/>
+<text x="825" y="541" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" font-style="italic" fill="#3a3a3a">structures the student is unsure about → next DFT round (§12)</text>
+<rect x="705" y="440" width="16" height="16" rx="4" fill="#dbe7f6" stroke="#2f5f9e" stroke-width="1.5"/>
+<text x="727" y="452.5" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#3a3a3a">models</text>
+<rect x="805" y="440" width="16" height="16" rx="4" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.5"/>
+<text x="827" y="452.5" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#3a3a3a">DFT data</text>
+<rect x="915" y="440" width="16" height="16" rx="4" fill="#e9e0f5" stroke="#6d4aa8" stroke-width="1.5"/>
+<text x="937" y="452.5" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#3a3a3a">uncertainty / selection</text>
+<rect x="1090" y="440" width="16" height="16" rx="4" fill="#dff1e3" stroke="#2e8b57" stroke-width="1.5"/>
+<text x="1112" y="452.5" text-anchor="start" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#3a3a3a">simulation</text>
+</svg>
