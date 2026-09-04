@@ -39,6 +39,10 @@ it the section shows the shipped run.
 
 ## Provenance
 
-DFT reference data: Al–Li VASP database (ICAMS). The reference numbers in `0-data/reference-hull-only-*`
+DFT reference data: the Al–Li database of S. Menon, Y. Lysogorskiy, A. L. M. Knoll, N. Leimeroth, M. Poul,
+M. Qamar, J. Janssen, M. Mrovec, J. Rohrer, K. Albe, J. Behler, R. Drautz and J. Neugebauer, *From electrons to
+phase diagrams with machine learning potentials using pyiron based automated workflows*, npj Comput. Mater. **10**,
+261 (2024), [doi:10.1038/s41524-024-01441-0](https://www.nature.com/articles/s41524-024-01441-0). Please cite it
+when you use these data. The reference numbers in `0-data/reference-hull-only-*`
 come from the same pipeline trained on the 128 hull structures only, student on the full distillation
 pool, 2026-09-03.
