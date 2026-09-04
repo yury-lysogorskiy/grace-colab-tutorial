@@ -5,3 +5,4 @@ __pycache__/
 1-finetune-hull+fps/input.yaml
 3-distill/student-*/input.yaml
 5-lammps-*/in.lammps
+.xla-cache/
