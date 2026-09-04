@@ -4,7 +4,7 @@ finetuned teacher + UQ artifact -> distillation pool -> GRACE/FS student + activ
 from pathlib import Path
 import sys
 
-W, H = 1690, 600
+W, H = 1690, 626
 FONT = "Liberation Sans, Helvetica, Arial, sans-serif"
 C = {  # fill, stroke
     "model": ("#dbe7f6", "#2f5f9e"),
@@ -97,7 +97,10 @@ arrow([(1430, y1), (1500, y1)]); label(1465, y1-10, "E, F, γ", size=12)
 label(1438, ym-8, "γ", anchor="start", size=13)
 # closing the loop: LAMMPS -> structures for the next DFT round -> pools
 arrow([(1580, TOP+BH), (1580, 548), (140, 548), (140, BOT+BH)], dashed=True)
-label(860, 541, "structures the student is unsure about → next DFT round (§12)", size=12.5)
+label(860, 541, "structures the student is unsure about → DFT → next finetuning round (§12)", size=12.5)
+# the shortcut: the same structures labelled by the teacher go straight back into the distillation pool
+arrow([(1580, TOP), (1580, 26), (1060, 26), (1060, TOP)], dashed=True)
+label(1320, 17, "shortcut: the same structures labelled by the teacher instead of DFT → distillation pool", size=12.5)
 
 # ---------------------------------------------------------------- legend
 lx, ly = 705, 440
@@ -110,5 +113,5 @@ for i, (kind, name) in enumerate([("model", "models"), ("data", "DFT data"), ("u
 svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">\n'
        f'<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">'
        f'<path d="M0,0 L9,4.5 L0,9 z" fill="{ARROW}"/></marker></defs>\n'
-       f'<rect width="{W}" height="{H}" fill="#ffffff"/>\n' + "\n".join(out) + "\n</svg>\n")
+       f'<rect width="{W}" height="{H}" fill="#ffffff"/>\n<g transform="translate(0,26)">\n' + "\n".join(out) + "\n</g>\n</svg>\n")
 dst = Path(sys.argv[1]); dst.write_text(svg); print("wrote", dst, len(svg), "bytes")
