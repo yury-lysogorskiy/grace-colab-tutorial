@@ -70,9 +70,12 @@ not the workarounds. Keep this list in sync with the tools; delete an entry once
   measured on two cores, about 2.3 katom-step/s versus about 7.9 for two MPI ranks. The CPU path
   therefore uses `mpirun -np N` with `OMP_NUM_THREADS=1`.
 - Kokkos/CUDA builds are architecture specific. The release `lammps-t4-v1` is compiled for compute
-  capability 7.5 (T4); on another Colab GPU it runs through PTX JIT, slower. It links `libcublas.so.12`
-  dynamically and expects it from the host's CUDA 12 toolkit (`/usr/local/cuda/lib64` on Colab), so a
-  Colab image that moves to CUDA 13 needs a rebuild. Build recipe: `cmake -D PKG_KOKKOS=ON
+  capability 7.5 (T4); on another Colab GPU it runs through PTX JIT, slower. It was built with gcc 13,
+  so it needs a newer `libstdc++` than Colab's system one: the archive ships it in `lib/`, and the
+  binary's RPATH (`$ORIGIN/../lib:/usr/local/cuda/lib64`) finds it without `LD_LIBRARY_PATH`. A
+  `GLIBCXX_3.4.32 not found` error means `bin/lmp` was moved away from its `lib/`. It links
+  `libcublas.so.12` dynamically and expects it from the host's CUDA 12 toolkit (`/usr/local/cuda/lib64`
+  on Colab), so a Colab image that moves to CUDA 13 needs a rebuild. Build recipe: `cmake -D PKG_KOKKOS=ON
   -D Kokkos_ENABLE_CUDA=ON -D Kokkos_ENABLE_OPENMP=ON -D Kokkos_ARCH_TURING75=ON -D PKG_ML-PACE=ON
   -D NO_GRACE_TF=ON -D BUILD_MPI=OFF` on `yury-lysogorskiy/lammps` branch `feature/3l-kk`.
 
