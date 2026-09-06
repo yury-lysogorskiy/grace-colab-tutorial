@@ -69,6 +69,12 @@ not the workarounds. Keep this list in sync with the tools; delete an entry once
 - Kokkos **OpenMP** threading is markedly slower than plain MPI ranks for `grace/fs` on CPU:
   measured on two cores, about 2.3 katom-step/s versus about 7.9 for two MPI ranks. The CPU path
   therefore uses `mpirun -np N` with `OMP_NUM_THREADS=1`.
+- The default asset `lmp-grace-t4-tf.tar.gz` links TensorFlow dynamically (C API, built against TF
+  2.20.0) and does **not** ship it: `libtensorflow_cc.so.2` comes from the host's pip `tensorflow`. The
+  RPATH covers `/usr/local/lib/python3.11..3.13/dist-packages/tensorflow`, and the MD cell adds the
+  directory of `tensorflow.__file__` to `LD_LIBRARY_PATH`. If Colab's TensorFlow moves elsewhere the
+  binary does not start at all (a missing DT_NEEDED library), even for `grace/fs`; the asset
+  `lmp-grace-t4.tar.gz` has no TensorFlow dependency and is the fallback.
 - Kokkos/CUDA builds are architecture specific. The release `lammps-t4-v1` is compiled for compute
   capability 7.5 (T4); on another Colab GPU it runs through PTX JIT, slower. It was built with gcc 13,
   so it needs a newer `libstdc++` than Colab's system one: the archive ships it in `lib/`, and the
