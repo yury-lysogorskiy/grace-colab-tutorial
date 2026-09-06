@@ -33,9 +33,11 @@ The teacher's training checkpoints are not shipped (120 MB); with `FORCE_RERUN` 
 
 ## LAMMPS
 
-Section 12 re-runs the MD only if a LAMMPS binary with GRACE/FS and Kokkos/CUDA is present. On Colab,
-put the Google Drive id of `lmp-grace-t4-cu128.tar.gz` into `LMP_DRIVE_ID` in the setup cell. Without
-it the section shows the shipped run.
+Section 13 re-runs the MD only if a LAMMPS binary with GRACE/FS and Kokkos/CUDA is present. On Colab
+the setup cell downloads one built for the T4 from this repository's
+[releases](https://github.com/yury-lysogorskiy/grace-colab-tutorial/releases/tag/lammps-t4-v1) (`LMP_URL`);
+elsewhere point `LMP` in the configuration cell to your own Kokkos build. Without a binary the section
+shows the shipped run.
 
 ## Provenance
 
