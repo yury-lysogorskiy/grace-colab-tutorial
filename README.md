@@ -1,7 +1,8 @@
 # GRACE Al–Li tutorial
 
 <a href="https://colab.research.google.com/github/yury-lysogorskiy/grace-colab-tutorial/blob/main/GRACE-AlLi-tutorial.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"></a>
-&nbsp; **Documentation: [gracemaker.readthedocs.io](https://gracemaker.readthedocs.io/)**
+
+📖 **Documentation: [gracemaker.readthedocs.io](https://gracemaker.readthedocs.io/)**
 
 Finetune the `GRACE-3L-OMAT-large` foundation model on the Al–Li convex hull **plus 128 DFT structures the
 foundation model picks itself** from 1000 candidates (`grace_uq select --strategy fps-all`), build
