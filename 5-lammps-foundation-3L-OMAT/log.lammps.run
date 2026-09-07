@@ -1,0 +1,111 @@
+units metal
+boundary p p p
+atom_style atomic
+read_data AlLi.lammps-data
+Reading data file ...
+  triclinic box = (0 0 0) to (26.954922 23.343648 22.008602) with tilt (13.477461 13.477461 7.7812158)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (src/domain.cpp:221)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  864 atoms
+  read_data CPU = 0.009 seconds
+pair_style grace
+[GRACE] TF version: 2.20.0
+[GRACE] Neighbour padding is ON, padding fraction: 0.01, max padding fraction before reduction: 0.2, max number of reduction(s): 10
+pair_coeff * * /home/users/lysogy36/.cache/grace/GRACE-3L-OMAT-large Al Li
+[GRACE] Loading /home/users/lysogy36/.cache/grace/GRACE-3L-OMAT-large
+[GRACE] Model loaded
+[GRACE] Mapping LAMMPS atom type #1(Al) -> ACE species type #2
+[GRACE] Mapping LAMMPS atom type #2(Li) -> ACE species type #39
+[GRACE] Compute energy only function is available
+[GRACE] compute_uq signature is available
+[GRACE] compute_uq_gamma_only signature is available
+[GRACE] compute_dense signature is available
+[GRACE] atomic_sigma head is available
+neighbor 2.0 bin
+neigh_modify delay 0 every 1 check yes
+fix     grace_gamma all pair 25 grace gamma 1
+compute max_gamma all reduce max f_grace_gamma
+compute dist all pair/local dist
+compute min_dist all reduce min c_dist inputs local
+variable maxg equal c_max_gamma
+variable dump_skip equal "c_max_gamma < 1.5"
+dump extrap all custom 25 extrapolative_structures.dump id type x y z f_grace_gamma
+dump_modify extrap skip v_dump_skip element Al Li
+thermo_style custom step temp pe etotal press vol c_min_dist c_max_gamma cpu cpuremain
+thermo 25
+thermo_modify flush yes
+velocity all create 500.0 12345 mom yes rot yes dist gaussian
+timestep 0.001
+fix npt_ramp all npt temp 500 5000 0.025 aniso 0 0 1.0
+run 500
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 8
+  ghost atom cutoff = 8
+  binsize = 4, bins = 14 8 6
+  2 neighbor lists, perpetual/occasional/extra = 1 1 0
+  (1) pair grace, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+  (2) compute pair/local, occasional, half/full from (1)
+      attributes: half, newton on
+      pair build: halffull/newton/tri
+      stencil: none
+      bin: none
+Per MPI rank memory allocation (min/avg/max) = 4.393 | 4.393 | 4.393 Mbytes
+   Step          Temp          PotEng         TotEng         Press          Volume       c_min_dist    c_max_gamma        CPU          CPULeft    
+         0   500           -2595.6027     -2539.8269     -8205.3064      13848.389      2.7510752      0.74043125     0              0            
+        25   148.86215     -2552.1538     -2535.548       2067.9139      13831.422      2.2984759      0.92844766     32.395572      615.51591    
+        50   327.31614     -2563.2386     -2526.726       2013.054       13817.2        2.4026347      0.92049897     49.76277       447.86495    
+        75   359.06308     -2551.7241     -2511.6701      4607.6965      13818.652      2.2864287      0.87155384     67.160291      380.575      
+       100   451.8673      -2541.5926     -2491.1861      7158.3012      13847.224      2.2370052      0.87196815     84.589251      338.35701    
+       125   606.56339     -2533.1145     -2465.4514      9355.3077      13919.583      2.121383       0.85640311     101.99305      305.97917    
+       150   713.76825     -2510.2188     -2430.5968      11563.713      14051.078      2.0848132      0.83788836     119.39245      278.5824     
+       175   1010.8898     -2499.6947     -2386.9284      10613.355      14250.677      2.1539789      0.84177911     136.80674      254.06966    
+       200   1121.2757     -2457.9377     -2332.8577      14294.111      14510.665      1.9452135      0.7717185      154.23198      231.34797    
+       225   1403.1437     -2426.8028     -2270.2801      16534.234      14825.101      1.9960864      0.80061108     171.64014      209.78239    
+       250   1664.0288     -2381.6323     -2196.0074      20538.115      15173.112      1.899402       0.71742409     189.06376      189.06377    
+       275   2104.2158     -2344.9035     -2110.1751      23937.201      15542.043      1.7786747      0.68753493     206.45303      168.91611    
+       300   2442.1693     -2286.8134     -2014.3857      29134.294      15937.96       1.8961701      0.58376873     223.879        149.25267    
+       325   2838.8778     -2229.6247     -1912.9436      34109.433      16391.927      1.6512547      0.60825264     259.78576      139.88464    
+       350   3247.3598     -2172.9043     -1810.6564      38557.367      16928.05       1.5724257      0.59401745     275.75594      118.18112    
+       375   3720.789      -2128.8027     -1713.7431      40574.161      17535.422      1.6555185      0.61447817     291.76886      97.256288    
+       400   4072.4203     -2086.6728     -1632.3882      43349.545      18178.005      1.5017973      0.66842288     307.74949      76.937374    
+       425   4413.2611     -2060.2462     -1567.9402      40697.818      18842.664      1.5736562      0.7346198      333.77647      58.90173     
+       450   4532.2492     -2033.9492     -1528.37        37885.718      19502.427      1.6546117      0.74906129     357.7332       39.748134    
+       475   4822.9873     -2034.2835     -1496.272       32642.851      20147.484      1.3653265      1.1580564      372.23253      19.591186    
+       500   4818.251      -1999.7346     -1462.2515      32042.812      20768.821      1.7290502      0.92772681     386.73097      0            
+Loop time of 386.731 on 1 procs for 500 steps with 864 atoms
+
+Performance: 0.112 ns/day, 214.851 hours/ns, 1.293 timesteps/s, 1.117 katom-step/s
+112.5% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 386.43     | 386.43     | 386.43     |   0.0 | 99.92
+Neigh   | 0.17081    | 0.17081    | 0.17081    |   0.0 |  0.04
+Comm    | 0.021779   | 0.021779   | 0.021779   |   0.0 |  0.01
+Output  | 0.059947   | 0.059947   | 0.059947   |   0.0 |  0.02
+Modify  | 0.043934   | 0.043934   | 0.043934   |   0.0 |  0.01
+Other   |            | 0.007156   |            |       |  0.00
+
+Nlocal:            864 ave         864 max         864 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           3028 ave        3028 max        3028 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          38525 ave       38525 max       38525 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:        77050 ave       77050 max       77050 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 77050
+Ave neighs/atom = 89.178241
+Neighbor list builds = 30
+Dangerous builds = 0
+[grace] 430272 atoms, 498 calls, 864.0 atoms/step, 850.4 us/atom | Data: 0.9%, Model: 99.1%
+Total wall time: 0:06:52
