@@ -1,0 +1,129 @@
+units metal
+boundary p p p
+atom_style atomic
+read_data AlLi.lammps-data
+Reading data file ...
+  triclinic box = (0 0 0) to (26.954922 23.343648 22.008602) with tilt (13.477461 13.477461 7.7812158)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (src/domain.cpp:221)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  864 atoms
+  read_data CPU = 0.011 seconds
+pair_style grace/3l/kk chunksize 256
+pair_coeff * * /home/users/lysogy36/PycharmProjects/GITHUB/grace-tutorial-colab-Sept2026/fps-variant/1-finetune-hull+fps/seed/1/kokkos_uq_rp128_p99.npz Al Li
+[GRACE-3L/KK] Loading weights from /home/users/lysogy36/PycharmProjects/GITHUB/grace-tutorial-colab-Sept2026/fps-variant/1-finetune-hull+fps/seed/1/kokkos_uq_rp128_p99.npz
+[GRACE-3L/KK] GRACE-3L loaded: n_elements=2 lmax=4 nradbase=10 radial_p=5 rcut=6 | SPBF=3 products=9 reduces=16 FCs=6 eqnorms=2 rmsnorms=3 | energy_mlp[31->64->1] act=0 origins=3 | A1_inv_avg_n_neigh=0.02546846680343151 A1_mlp_norm0=0.08512565493583679 output_scale=1
+[GRACE-3L/KK] LAMMPS type 1 -> Al (model index 0)
+[GRACE-3L/KK] LAMMPS type 2 -> Li (model index 1)
+neighbor 2.0 bin
+neigh_modify delay 0 every 1 check yes
+fix     grace_gamma all pair 25 grace/3l/kk gamma 1
+compute max_gamma all reduce max f_grace_gamma
+compute dist all pair/local dist
+compute min_dist all reduce min c_dist inputs local
+variable maxg equal c_max_gamma
+variable dump_skip equal "c_max_gamma < 1.5"
+dump extrap all custom 25 extrapolative_structures.dump id type x y z f_grace_gamma
+dump_modify extrap skip v_dump_skip element Al Li
+fix stopper all halt 25 v_maxg > 25 error continue
+thermo_style custom step temp pe etotal press vol c_min_dist c_max_gamma cpu cpuremain
+thermo 25
+thermo_modify flush yes
+velocity all create 500.0 12345 mom yes rot yes dist gaussian
+timestep 0.001
+fix npt_ramp all npt temp 500 5000 0.025 aniso 0 0 1.0
+run 500
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Your simulation uses code contributions which should be cited:
+
+- KOKKOS package: https://doi.org/10.1145/3731599.3767498
+
+@inproceedings{Johansson25,
+ author = {A. Johansson and E. Weinberg and C. Trott and M. McCarthy and S. Moore},
+ title = {{LAMMPS-KOKKOS}: {P}erformance Portable Molecular Dynamics Across Exascale Architectures},
+ year = 2025,
+ booktitle = {Proceedings of the SC '25 Workshops of the International Conference for High Performance Computing,
+  Networking, Storage and Analysis},
+ pages = {1217–1232},
+}
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+[GRACE-3L/KK] Initialization complete: weights on device (SPBF=3 products=9 reduces=16 FCs=6 eqnorms=2 rmsnorms=3) | comm_forward=3200 (round1 I_n_funcs=64 I_n_out=25; round2 I2_n_funcs=64 I2_n_out=50).
+[GRACE-3L/KK] cuBLAS radial-MLP selftest OK (layer-0 max rel 2.79e-04)
+[GRACE-3L/KK] radial MLP: true-fp32 cuBLAS SGEMM enabled (CUDA)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 8
+  ghost atom cutoff = 8
+  binsize = 8, bins = 7 4 3
+  2 neighbor lists, perpetual/occasional/extra = 1 1 0
+  (1) pair grace/3l/kk, perpetual
+      attributes: full, newton on, kokkos_device
+      pair build: full/bin/kk/device
+      stencil: full/bin/3d
+      bin: kk/device
+  (2) compute pair/local, occasional
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton/tri
+      stencil: half/bin/3d/tri
+      bin: standard
+WARNING: Fix pair not compatible with sending data in Kokkos communication (src/KOKKOS/comm_kokkos.cpp:934)
+WARNING: Fix with atom-based arrays not compatible with sending data in Kokkos communication, switching to legacy exchange/border communication (src/KOKKOS/comm_kokkos.cpp:941)
+WARNING: Fix pair not (yet) compatible with Kokkos sorting on device (src/KOKKOS/atom_kokkos.cpp:219)
+WARNING: Fix with atom-based arrays not (yet) compatible with Kokkos sorting on device, switching to legacy host sorting (src/KOKKOS/atom_kokkos.cpp:225)
+Per MPI rank memory allocation (min/avg/max) = 71.37 | 71.37 | 71.37 Mbytes
+   Step          Temp          PotEng         TotEng         Press          Volume       c_min_dist    c_max_gamma        CPU          CPULeft    
+         0   500           -2604.9185     -2549.1427     -1914.0719      13848.389      2.7510752      0.12804382     0              0            
+        25   146.9378      -2561.2577     -2544.8666      6955.174       13849.519      2.3037023      4.2107193      19.295489      366.61431    
+        50   324.43174     -2572.3883     -2536.1975      4962.1054      13882.919      2.4078556      3.9860152      38.633011      347.6971     
+        75   354.23724     -2561.0333     -2521.5176      5051.8389      13949.898      2.2984894      3.922201       57.97278       328.51243    
+       100   442.09155     -2550.8037     -2501.4877      5256.4437      14047.737      2.2526862      4.8744246      77.352995      309.41198    
+       125   590.97395     -2542.2622     -2476.3381      5456.1227      14177.966      2.1247559      4.7258662      96.896355      290.68907    
+       150   698.41672     -2519.6312     -2441.7217      6652.7689      14340.923      2.0939404      5.1914732      116.36776      271.52477    
+       175   985.95044     -2508.4016     -2398.4173      6077.2107      14535.816      2.1702304      6.4735488      135.84239      252.27872    
+       200   1102.2128     -2466.8141     -2343.8606      10613.891      14756.437      1.887512       6.9230584      155.15324      232.72987    
+       225   1380.2656     -2434.8125     -2280.8418      14437.132      15013.415      2.0092234      6.8084543      174.27205      212.99917    
+       250   1659.1431     -2390.7997     -2205.7198      19308.252      15313.54       1.9214348      11.988747      193.20533      193.20533    
+       275   2092.1763     -2352.757      -2119.3715      23453.506      15661.223      1.8611364      9.2020154      211.94053      173.40589    
+       300   2437.9042     -2294.9945     -2023.0426      28067.557      16057.168      1.8889792      7.6715875      230.44769      153.63179    
+       325   2864.6314     -2240.2073     -1920.6534      32642.072      16511.204      1.7691473      8.0045301      248.69114      133.91062    
+       350   3277.053      -2183.2338     -1817.6736      37315.014      17040.468      1.5040939      14.473967      266.67339      114.2886     
+       375   3738.2744     -2137.7969     -1720.7868      39614.922      17645.554      1.6251093      10.466778      284.4304       94.810133    
+       400   4024.6775     -2088.2419     -1639.2831      42717.192      18297.901      1.5995784      11.044376      301.99452      75.49863     
+       425   4361.2097     -2056.1727     -1569.6731      42001.296      18979.393      1.5515035      12.755367      319.33718      56.35362     
+       450   4680.2097     -2041.5586     -1519.4742      40011.4        19668.312      1.4285982      12.48127       336.46035      37.384483    
+       475   4833.7082     -2033.7385     -1494.5311      33818.142      20348.963      1.5917677      12.694347      353.32805      18.596213    
+       500   4891.6379     -2014.6157     -1468.9461      29413.577      20997.612      1.6043649      11.081937      370.01872      0            
+Loop time of 370.02 on 1 procs for 500 steps with 864 atoms
+
+Performance: 0.117 ns/day, 205.567 hours/ns, 1.351 timesteps/s, 1.168 katom-step/s
+100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 369.36     | 369.36     | 369.36     |   0.0 | 99.82
+Neigh   | 0.024922   | 0.024922   | 0.024922   |   0.0 |  0.01
+Comm    | 0.023036   | 0.023036   | 0.023036   |   0.0 |  0.01
+Output  | 0.12279    | 0.12279    | 0.12279    |   0.0 |  0.03
+Modify  | 0.46298    | 0.46298    | 0.46298    |   0.0 |  0.13
+Other   |            | 0.02793    |            |       |  0.01
+
+Nlocal:            864 ave         864 max         864 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           2954 ave        2954 max        2954 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          37802 ave       37802 max       37802 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:        76160 ave       76160 max       76160 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 76160
+Ave neighs/atom = 88.148148
+Neighbor list builds = 31
+Dangerous builds = 0
+Total wall time: 0:06:13
