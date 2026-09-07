@@ -35,7 +35,7 @@ repository.
 |---|---|
 | `GRACE-AlLi-tutorial.ipynb` | the tutorial, with outputs |
 | `figures/` | the pipeline scheme shown under the title, with the script that draws it |
-| `0-data/` | DFT inputs: 112 + 16 hull structures, 32 OOD structures of an unseen prototype, 265 evaluation structures, 1000 selection candidates, 19 Materials Project cells to relax, reference numbers of the hull-only run, and the scripts that prepared the sets |
+| `0-data/` | DFT inputs: 112 + 16 hull structures, 32 OOD structures of an unseen prototype, 265 evaluation structures, 1000 selection candidates, 19 Materials Project cells to relax, and the scripts that prepared the sets |
 | `1-select/` | foundation-model features of the candidates and the 128 selected structures |
 | `1-foundation-baseline/` | energies of the dataset from `GRACE-3L-OMAT-large` and `GRACE-FS-OMAT` before any finetuning |
 | `1-finetune-hull+fps/`, `train-hull+fps.pkl.gz` | the finetuned teacher as its UQ SavedModel (energies, forces, stress and γ), the UQ artifact, metrics, and the training set it was fitted to |
@@ -57,8 +57,8 @@ Section 13 drives the same 500-step heating ramp, 500 → 5000 K under NPT, with
 | run | pair style | model file | γ |
 |---|---|---|---|
 | student | `grace/fs/kk` | `saved_model.yaml` + active set `.asi` | D-optimality (MaxVol) |
-| finetuned teacher | `grace/3l/kk` | `kokkos_uq_rp128_p99.npz` from `grace_utils export_kokkos --uq-artifacts` | GMM of the UQ artifact |
-| foundation model | `grace` (TensorFlow) | the `GRACE-3L-OMAT-large` SavedModel | GMM shipped with the model |
+| finetuned teacher | `grace/3l/kk` | `kokkos_uq_rp128_p99.npz` from `grace_utils export_kokkos --uq-artifacts` | NCM (nearest-cluster Mahalanobis distance) of the UQ artifact |
+| foundation model | `grace` (TensorFlow) | the `GRACE-3L-OMAT-large` SavedModel | NCM shipped with the model |
 
 The runs are re-executed only when their log is missing or `FORCE_RERUN` is set; otherwise the shipped logs are
 plotted. The release provides two binaries compiled for the T4 (compute capability 7.5, Kokkos/CUDA, no MPI):
@@ -72,6 +72,4 @@ DFT reference data: the Al–Li database of S. Menon, Y. Lysogorskiy, A. L. M. K
 M. Qamar, J. Janssen, M. Mrovec, J. Rohrer, K. Albe, J. Behler, R. Drautz and J. Neugebauer, *From electrons to
 phase diagrams with machine learning potentials using pyiron based automated workflows*, npj Comput. Mater. **10**,
 261 (2024), [doi:10.1038/s41524-024-01441-0](https://www.nature.com/articles/s41524-024-01441-0). Please cite it
-when you use these data. The reference numbers in `0-data/reference-hull-only-*`
-come from the same pipeline trained on the 128 hull structures only, student on the full distillation
-pool, 2026-09-03.
+when you use these data.

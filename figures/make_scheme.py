@@ -56,7 +56,7 @@ box(300, BOT, 180, BH, "FPS → 128 structures", ["farthest-point sampling in", 
 box(530, MID, 120, BOT+BH-MID, "Training set", ["256 DFT", "structures", "", "energies, forces,", "stresses"], "data")
 # column 4: teacher and its UQ artifact
 box(700, TOP, 180, BH, "GRACE-3L finetuned", ["the teacher", "hull + FPS data; only the", "readout weights train"], "model", "§4")
-box(700, MID, 180, BH, "UQ artifact", ["Gaussian mixture on the", "teacher's features → γ"], "uq", "§5")
+box(700, MID, 180, BH, "UQ artifact", ["nearest-cluster Mahalanobis", "distance (NCM) → γ"], "uq", "§5")
 # column 5: distillation pool
 box(980, TOP, 160, BH, "Distillation pool", ["deformed hull structures", "labelled by the teacher,", "kept if γ ≤ 5"], "data", "§9")
 box(980, MID, 160, BH, "GRACE-FS-OMAT", ["foundation model", "fast linear model"], "model", "§10")

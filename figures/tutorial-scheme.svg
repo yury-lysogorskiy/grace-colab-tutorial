@@ -48,8 +48,8 @@
 <text x="862.5" y="64" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§4</text>
 <rect x="700" y="250" width="180" height="96" rx="10" ry="10" fill="#e9e0f5" stroke="#6d4aa8" stroke-width="1.8"/>
 <text x="790.0" y="285.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">UQ artifact</text>
-<text x="790.0" y="306.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">Gaussian mixture on the</text>
-<text x="790.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">teacher's features → γ</text>
+<text x="790.0" y="306.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">nearest-cluster Mahalanobis</text>
+<text x="790.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">distance (NCM) → γ</text>
 <rect x="851.0" y="241" width="23.0" height="18" rx="9" fill="#6d4aa8"/>
 <text x="862.5" y="254" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§5</text>
 <rect x="980" y="60" width="160" height="96" rx="10" ry="10" fill="#fdf0d5" stroke="#c8891a" stroke-width="1.8"/>
