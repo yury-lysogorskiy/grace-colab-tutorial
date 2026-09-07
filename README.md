@@ -26,7 +26,7 @@ Locally: clone, start the notebook from an environment with `tensorpotential>=0.
 | `0-data/` | DFT inputs: 112 + 16 hull structures, 32 OOD structures of an unseen prototype, 265 evaluation structures, 1000 selection candidates, 19 Materials Project cells to relax, reference numbers of the hull-only run, and the scripts that prepared the sets |
 | `1-select/` | foundation-model features of the candidates and the 128 selected structures |
 | `1-finetune-hull+fps/` | the finetuned teacher as its UQ SavedModel (energies, forces, stress and γ), the UQ artifact, metrics |
-| `2-uq-validation/`, `3-distill/`, `4-convex-hull/`, `5-lammps-student-fs-gamma-le-5/`, `5-lammps-teacher-3L-rp128_p99/` | gamma caches, distillation pool and labels, the GRACE/FS student with its active set, relaxed structures, the MD log and the extrapolative frames |
+| `2-uq-validation/`, `3-distill/`, `4-convex-hull/`, `5-lammps-student-fs-gamma-le-5/`, `5-lammps-teacher-3L-rp128_p99/`, `5-lammps-foundation-3L-OMAT/` | gamma caches, distillation pool and labels, the GRACE/FS student with its active set, relaxed structures, the MD log and the extrapolative frames |
 | `docs/known-issues.md` | tool quirks that the notebook works around |
 
 The teacher's training checkpoints are not shipped (120 MB); with `FORCE_RERUN` the teacher is retrained.
