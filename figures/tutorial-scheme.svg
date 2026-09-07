@@ -62,7 +62,7 @@
 <rect x="980" y="250" width="160" height="96" rx="10" ry="10" fill="#dbe7f6" stroke="#2f5f9e" stroke-width="1.8"/>
 <text x="1060.0" y="285.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="bold" fill="#1f2933">GRACE-FS-OMAT</text>
 <text x="1060.0" y="306.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">foundation model</text>
-<text x="1060.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">fast linear model</text>
+<text x="1060.0" y="323.0" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="12.5" fill="#1f2933">much simpler, fast</text>
 <rect x="1103.5" y="241" width="30.5" height="18" rx="9" fill="#2f5f9e"/>
 <text x="1118.75" y="254" text-anchor="middle" font-family="Liberation Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">§10</text>
 <rect x="1240" y="60" width="160" height="96" rx="10" ry="10" fill="#dbe7f6" stroke="#2f5f9e" stroke-width="1.8"/>

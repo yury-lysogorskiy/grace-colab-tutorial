@@ -59,7 +59,7 @@ box(700, TOP, 180, BH, "GRACE-3L finetuned", ["the teacher", "hull + FPS data; o
 box(700, MID, 180, BH, "UQ artifact", ["nearest-cluster Mahalanobis", "distance (NCM) → γ"], "uq", "§5")
 # column 5: distillation pool
 box(980, TOP, 160, BH, "Distillation pool", ["deformed hull structures", "labelled by the teacher,", "kept if γ ≤ 5"], "data", "§9")
-box(980, MID, 160, BH, "GRACE-FS-OMAT", ["foundation model", "fast linear model"], "model", "§10")
+box(980, MID, 160, BH, "GRACE-FS-OMAT", ["foundation model", "much simpler, fast"], "model", "§10")
 # column 6: student and its active set
 box(1240, TOP, 160, BH, "GRACE-FS finetuned", ["the student", "distillation pool;", "all weights train"], "model", "§10")
 box(1240, MID, 160, BH, "Active set (ASI)", ["D-optimality → γ", "at every MD step"], "uq", "§10")
